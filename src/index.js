@@ -2,6 +2,7 @@ import C from './constants'
 import appReducer from './store/reducers'
 // import initialState from './initialState.json'
 import { createStore } from 'redux'
+import storeFactory from './store';
 
 // let state = initialState
 //
@@ -48,14 +49,16 @@ import { createStore } from 'redux'
 
 const initialState = (localStorage['redux-store'])? JSON.parse(localStorage['redux-store']): {};
 
-const store = createStore(appReducer, initialState );
+const store = storeFactory(initialState);
+
+const saveState = () =>{
+    const state = JSON.stringify((store.getState()));
+    localStorage['redux-store'] = state
+};
+
+store.subscribe(saveState);
 
 window.store = store;
-
-store.subscribe((() => {
-    const state = JSON.stringify((store.getState()))
-    localStorage['redux-store'] = state
-}))
 
 store.dispatch({
     type: C.ADD_DAY,
