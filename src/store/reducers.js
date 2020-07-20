@@ -24,7 +24,7 @@ export const errors = (state = [], action) => {
     }
 }
 
-export const allSkiDays = (state = null, action) => {
+export const allSkiDays = (state = [], action) => {
     switch (action.type) {
         case C.ADD_DAY:
             const hasDayAlready = state.some(skiDay => skiDay.date === action.payload.date);
