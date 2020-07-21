@@ -5,7 +5,9 @@ import {createStore, applyMiddleware} from 'redux'
 
 const consoleMessage = store => next => action => {
     let result
+    console.groupCollapsed(`dispatching action => ${action.type}`);
     console.log('ski days', store.getState().allSkiDays.length);
+    console.log('ski days', store.getState().allSkiDays);
     result = next(action);
 
     let {allSkiDays, goal, errors, resortNames} = store.getState();
@@ -14,10 +16,11 @@ const consoleMessage = store => next => action => {
     resort: ${allSkiDays.length}
     fetching: ${resortNames.fetching}
     suggestions: ${resortNames.suggestions}
+    error: ${errors}
     
     `)
 
-    console.groupEnd()
+    console.groupEnd();
     return result
 }
 

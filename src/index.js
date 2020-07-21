@@ -3,6 +3,7 @@ import appReducer from './store/reducers'
 // import initialState from './initialState.json'
 import { createStore } from 'redux'
 import storeFactory from './store';
+import {addDay, removeDay, setGoal, addError, clearError, changeSuggestions} from './actions'
 
 // let state = initialState
 //
@@ -49,7 +50,7 @@ import storeFactory from './store';
 
 const initialState = (localStorage['redux-store'])? JSON.parse(localStorage['redux-store']): {};
 
-const store = storeFactory(initialState);
+const store = storeFactory();
 
 const saveState = () =>{
     const state = JSON.stringify((store.getState()));
@@ -70,10 +71,34 @@ store.dispatch({
     }
 })
 
-store.dispatch({
-    type: C.SET_GOAL,
-    payload: 2
-})
+store.dispatch(
+    addDay("Heavenly", '2016-12-22')
+)
+
+store.dispatch(
+    removeDay('2016-12-22')
+)
+
+// store.dispatch({
+//     type: C.SET_GOAL,
+//     payload: 2
+// })
+
+store.dispatch(
+    setGoal(55)
+)
+
+store.dispatch(
+    addError('Error!')
+)
+
+store.dispatch(
+    clearError(0)
+)
+
+store.dispatch(
+    changeSuggestions(['One', 'Two', 'Three'])
+)
 
 
 
