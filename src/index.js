@@ -3,7 +3,7 @@ import appReducer from './store/reducers'
 // import initialState from './initialState.json'
 import { createStore } from 'redux'
 import storeFactory from './store';
-import {addDay, removeDay, setGoal, addError, clearError, changeSuggestions} from './actions'
+import {addDay, removeDay, setGoal, addError, clearError, changeSuggestions, clearSuggestions} from './actions'
 
 // let state = initialState
 //
@@ -98,6 +98,10 @@ store.dispatch(
 
 store.dispatch(
     changeSuggestions(['One', 'Two', 'Three'])
+)
+
+store.dispatch(
+    clearSuggestions()
 )
 
 

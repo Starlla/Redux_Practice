@@ -1,5 +1,6 @@
 import C from '../constants'
 import appReducer from './reducers'
+import thunk from 'redux-thunk'
 import {createStore, applyMiddleware} from 'redux'
 
 
@@ -25,5 +26,5 @@ const consoleMessage = store => next => action => {
 }
 
 export default (initialState = {}) => {
-    return applyMiddleware(consoleMessage)(createStore)(appReducer, initialState)
+    return applyMiddleware(thunk, consoleMessage)(createStore)(appReducer, initialState)
 }
